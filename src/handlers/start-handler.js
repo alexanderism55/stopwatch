@@ -12,8 +12,11 @@ export let hoursInterval = "";
 export const startCountHandler = () => {
   debugger;
   // **miliseconds counter**
-
+  
   const miliSeconds = document.getElementById(MILISECONDS);
+  const seconds = document.getElementById(SECONDS);
+  const minutes = document.getElementById(MINUTES);
+  const hours = document.getElementById(HOURS);
   // seting up a function for the miliSeconds
   // the function converts the inner html of the grabbed element
   // and sets an argument that turns the value to zero,
@@ -22,6 +25,7 @@ export const startCountHandler = () => {
   const milisecondsCounter = () => {
     if (Number(miliSeconds.innerHTML) === 99) {
       miliSeconds.innerHTML = 0;
+      seconds.innerHTML = Number(seconds.innerHTML) + 1;
     }
     miliSeconds.innerHTML = Number(miliSeconds.innerHTML) + 1;
   };
@@ -32,7 +36,6 @@ export const startCountHandler = () => {
 
   // **seconds counter**
 
-  const seconds = document.getElementById(SECONDS);
   // seting up a function for the miliSeconds
   // the function converts the inner html of the grabbed element
   // and sets an argument that turns the value to zero,
@@ -41,15 +44,12 @@ export const startCountHandler = () => {
   const secondsCounter = () => {
     if (Number(seconds.innerHTML) === 60) {
       seconds.innerHTML = 0;
+      minutes.innerHTML = Number(minutes.innerHTML) + 1;
     }
-    seconds.innerHTML = Number(seconds.innerHTML) + 1;
   };
-  // setting up the interval to 1000
-  secondsInterval = setInterval(secondsCounter, 1000);
-
+  
   // minutes counter
 
-  const minutes = document.getElementById(MINUTES);
   // seting up a function for the miliSeconds
   // the function converts the inner html of the grabbed element
   // and sets an argument that turns the value to zero,
@@ -58,15 +58,12 @@ export const startCountHandler = () => {
   const minutesCounter = () => {
     if (Number(minutes.innerHTML) === 60) {
       minutes.innerHTML = 0;
+      hours.innerHTML = Number(hours.innerHTML) + 1;
     }
-    minutes.innerHTML = Number(minutes.innerHTML) + 1;
   };
-  // setting up the interval to 60000
-  minutesInterval = setInterval(minutesCounter, 60000);
-
+  
   // hours counter
 
-  const hours = document.getElementById(HOURS);
   // seting up a function for the miliSeconds
   // the function converts the inner html of the grabbed element
   // and sets an argument that turns the value to zero,
@@ -76,11 +73,8 @@ export const startCountHandler = () => {
     if (Number(hours.innerHTML) === 23) {
       hours.innerHTML = 0;
     }
-    hours.innerHTML = Number(hours.innerHTML) + 1;
   };
-  // setting up the interval to 3600000
-  hoursInterval = setInterval(hoursCounter, 3600000);
-
+ 
   // removeing the event listener so that it cant be called again
   document
     .getElementById(START_COUNT)
